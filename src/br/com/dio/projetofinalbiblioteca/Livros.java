@@ -1,9 +1,20 @@
 package br.com.dio.projetofinalbiblioteca;
 
+import java.util.*;
+
 public class Livros {
     private String titulo, genero, resumo, autor;
     private int numPaginas, exemplares;
 
+
+    public Livros(String titulo, String genero, String resumo, String autor, int numPaginas, int exemplares) {
+        this.titulo = titulo;
+        this.genero = genero;
+        this.resumo = resumo;
+        this.autor = autor;
+        this.numPaginas = numPaginas;
+        this.exemplares = exemplares;
+    }
 
     public String getTitulo() {
         return titulo;
@@ -51,5 +62,30 @@ public class Livros {
 
     public void setExemplares(int exemplares) {
         this.exemplares = exemplares;
+    }
+
+    @Override
+    public String toString() {
+        return "Livros{" +
+                "titulo='" + titulo + '\'' +
+                ", genero='" + genero + '\'' +
+                ", resumo='" + resumo + '\'' +
+                ", autor='" + autor + '\'' +
+                ", numPaginas=" + numPaginas +
+                ", exemplares=" + exemplares +
+                '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Livros livros = (Livros) o;
+        return numPaginas == livros.numPaginas && exemplares == livros.exemplares && titulo.equals(livros.titulo) && genero.equals(livros.genero) && resumo.equals(livros.resumo) && autor.equals(livros.autor);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(titulo, genero, resumo, autor, numPaginas, exemplares);
     }
 }

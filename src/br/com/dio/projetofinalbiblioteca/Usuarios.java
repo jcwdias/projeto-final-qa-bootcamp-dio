@@ -2,12 +2,12 @@ package br.com.dio.projetofinalbiblioteca;
 
 import java.util.List;
 
-public class Usuarios {
+public abstract class Usuarios {
     private String nome;
     private double pendencias;
     private int limiteDias, limiteLivros;
     private boolean estado;
-    private List<Emprestimos> emprestimo;
+    private int numEmprestimos;
 
 
     public String getNome() {
@@ -26,12 +26,12 @@ public class Usuarios {
         this.pendencias = pendencias;
     }
 
-    public int getLomiteDias() {
+    public int getLimiteDias() {
         return limiteDias;
     }
 
-    public void setLomiteDias(int lomiteDias) {
-        this.limiteDias = lomiteDias;
+    public void setLimiteDias(int limiteDias) {
+        this.limiteDias = limiteDias;
     }
 
     public int getLimiteLivros() {
@@ -50,11 +50,11 @@ public class Usuarios {
         this.estado = estado;
     }
 
-    public List<Emprestimos> getEmprestimo() {
-        return emprestimo;
+    public int getNumEmprestimos() {
+        return numEmprestimos;
     }
 
-    public void setEmprestimo(List<Emprestimos> emprestimo) {
-        this.emprestimo = emprestimo;
+    public void setNumEmprestimos(int numEmprestimos) {
+        this.numEmprestimos = numEmprestimos;
     }
 }

@@ -1,14 +1,34 @@
 package br.com.dio.projetofinalbiblioteca;
 
+import java.text.DateFormat;
 import java.util.Date;
 
 public class Emprestimos {
     private Usuarios usuario;
     private Livros livro;
-    private Date dataEmprestimo, daraParaDevolucao, dataDevolucao;
+    private DateFormat dataEmprestimo, daraParaDevolucao, dataDevolucao;
     private int diasAtraso;
     private boolean estado;
 
+    public Emprestimos(){
+
+    }
+
+    public void realizaEmprestimo(){
+
+    }
+
+    public void realizaDevolucao(){
+
+    }
+
+    public int calculaAtraso(){
+        return 0;
+    }
+
+    public double calculaMulta(){
+        return 0d;
+    }
 
     public Usuarios getUsuario() {
         return usuario;
@@ -26,27 +46,27 @@ public class Emprestimos {
         this.livro = livro;
     }
 
-    public Date getDataEmprestimo() {
+    public DateFormat getDataEmprestimo() {
         return dataEmprestimo;
     }
 
-    public void setDataEmprestimo(Date dataEmprestimo) {
+    public void setDataEmprestimo(DateFormat dataEmprestimo) {
         this.dataEmprestimo = dataEmprestimo;
     }
 
-    public Date getDaraParaDevolucao() {
+    public DateFormat getDaraParaDevolucao() {
         return daraParaDevolucao;
     }
 
-    public void setDaraParaDevolucao(Date daraParaDevolucao) {
+    public void setDaraParaDevolucao(DateFormat daraParaDevolucao) {
         this.daraParaDevolucao = daraParaDevolucao;
     }
 
-    public Date getDataDevolucao() {
+    public DateFormat getDataDevolucao() {
         return dataDevolucao;
     }
 
-    public void setDataDevolucao(Date dataDevolucao) {
+    public void setDataDevolucao(DateFormat dataDevolucao) {
         this.dataDevolucao = dataDevolucao;
     }
 
@@ -66,3 +86,4 @@ public class Emprestimos {
         this.estado = estado;
     }
 }
+
