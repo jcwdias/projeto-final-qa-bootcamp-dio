@@ -4,10 +4,11 @@ import java.util.*;
 
 public class Livros {
     private String titulo, genero, resumo, autor;
-    private int numPaginas, exemplares;
+    private int numPaginas, exemplares, codLivro;
 
 
-    public Livros(String titulo, String genero, String resumo, String autor, int numPaginas, int exemplares) {
+    public Livros(int codLivro, String titulo, String genero, String resumo, String autor, int numPaginas, int exemplares) {
+        this.codLivro = codLivro;
         this.titulo = titulo;
         this.genero = genero;
         this.resumo = resumo;
@@ -15,6 +16,8 @@ public class Livros {
         this.numPaginas = numPaginas;
         this.exemplares = exemplares;
     }
+
+
 
     public String getTitulo() {
         return titulo;
@@ -64,6 +67,14 @@ public class Livros {
         this.exemplares = exemplares;
     }
 
+    public int getCodLivro() {
+        return codLivro;
+    }
+
+    public void setCodLivro(int codLivro) {
+        this.codLivro = codLivro;
+    }
+
     @Override
     public String toString() {
         return "Livros{" +
@@ -73,6 +84,7 @@ public class Livros {
                 ", autor='" + autor + '\'' +
                 ", numPaginas=" + numPaginas +
                 ", exemplares=" + exemplares +
+                ", codLivro=" + codLivro +
                 '}';
     }
 

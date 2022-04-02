@@ -9,7 +9,6 @@ public abstract class Usuarios {
     private boolean estado;
     private int numEmprestimos;
 
-
     public String getNome() {
         return nome;
     }
@@ -56,5 +55,17 @@ public abstract class Usuarios {
 
     public void setNumEmprestimos(int numEmprestimos) {
         this.numEmprestimos = numEmprestimos;
+    }
+
+    @Override
+    public String toString() {
+        return "Usuarios{" +
+                "nome='" + nome + '\'' +
+                ", pendencias=" + pendencias +
+                ", limiteDias=" + limiteDias +
+                ", limiteLivros=" + limiteLivros +
+                ", estado=" + estado +
+                ", numEmprestimos=" + numEmprestimos +
+                '}';
     }
 }
