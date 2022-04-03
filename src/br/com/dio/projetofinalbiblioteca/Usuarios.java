@@ -4,7 +4,7 @@ import java.util.List;
 
 public abstract class Usuarios {
     private String nome;
-    private double pendencias;
+    private double pendencias = 0d;
     private int limiteDias, limiteLivros;
     private boolean estado;
     private int numEmprestimos;

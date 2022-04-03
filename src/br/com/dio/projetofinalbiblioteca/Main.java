@@ -36,14 +36,18 @@ public class Main {
         aluMaria.setNome("Maria");
         aluMaria.setCurso("Pedagogia");
 
-tiJean.infoUsuarios();
+        tiJean.infoUsuarios();
 
 
         Emprestimos emprestimo1 = new Emprestimos(livrosCadastrados.get(0),tiJean);
+        Emprestimos emprestimo2 = new Emprestimos(livrosCadastrados.get(1),tiJean);
+
         emprestimo1.realizaDevolucao();
-        emprestimo1.calculaAtraso();
+        emprestimo2.realizaDevolucao();
         System.out.println("---------------");
         emprestimo1.imprimeInfos();
+        emprestimo2.imprimeInfos();
+        tiJean.infoUsuarios();
 
 
 

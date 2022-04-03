@@ -4,7 +4,6 @@ import java.text.SimpleDateFormat;
 import java.time.Period;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.util.Date;
 import java.util.Objects;
 import java.util.Scanner;
 
@@ -19,9 +18,19 @@ public class Emprestimos {
     public Emprestimos(Livros livro, Usuarios usuario){
         Scanner scan = new Scanner(System.in);
         this.usuario = usuario;
-        this.livro = livro;
-        this.dataEmprestimo = realizaEmprestimo();
-        this.dataParaDevolucao = dataEmprestimo.plusDays(usuario.getLimiteDias());
+        if (usuario.isEstado()){
+            System.out.println("Empréstimo não autorizado! ");
+            System.out.println("O usuário "+ usuario.getNome() +" possui pendências, consulte a administração!");
+        }else if(livro.getExemplares()==0){
+            System.out.println("O livro "+ livro.getTitulo() +" não está disponível!");
+        }else if(usuario.getNumEmprestimos()==usuario.getLimiteLivros()){
+            System.out.println("Empréstimo não autorizado! ");
+            System.out.println("O usuário "+ usuario.getNome() +" atingiu o limite de empréstimos, consulte a administração!");
+        }else{
+            this.livro = livro;
+            this.dataEmprestimo = realizaEmprestimo();
+            this.dataParaDevolucao = dataEmprestimo.plusDays(usuario.getLimiteDias());
+        }
 
     }
 
@@ -33,26 +42,36 @@ public class Emprestimos {
     }
 
     public void imprimeInfos (){
-        System.out.println(this.getUsuario().getNome());
-        System.out.println(this.getLivro().getTitulo()+" - "+this.getLivro().getAutor());
-        System.out.println(this.getDataEmprestimo());
-        System.out.println(this.getDataParaDevolucao());
-        System.out.println(this.getDataDevolucao());
-        System.out.println(this.getDiasAtraso());
-        System.out.println(this.isAtrasado());
+        System.out.println("Nome usuário: "+this.getUsuario().getNome());
+        System.out.println("Título: "+this.getLivro().getTitulo()+" - "+this.getLivro().getAutor());
+        System.out.println("Data do empréstimo: "+this.getDataEmprestimo());
+        System.out.println("Prazo de devolução: "+this.getDataParaDevolucao());
+        System.out.println("Data de devolução: "+this.getDataDevolucao());
+        System.out.println("Dias de atraso: "+this.getDiasAtraso());
+        System.out.println("Multa pelo atraso: R$"+this.getValorMulta());
+        System.out.println("Em atraso? "+this.isAtrasado());
+        System.out.println("==================");
     }
 
     public LocalDate realizaEmprestimo(){
+        System.out.println("Empréstimo do livro : "+ livro.getTitulo()+" de "+livro.getAutor());
         System.out.println("Informe a data do Empréstimo: ");
         dataEmprestimo = datas();
         System.out.println("==================");
+        usuario.setNumEmprestimos(usuario.getNumEmprestimos()+1);
+        livro.setExemplares(livro.getExemplares()-1);
         return dataEmprestimo;
     }
 
     public void realizaDevolucao(){
+        System.out.println("Devolução do livro : "+ livro.getTitulo()+" de "+livro.getAutor());
         System.out.println("Informe a data de Devolução: ");
         this.dataDevolucao = datas();
         System.out.println("==================");
+        this.calculaAtraso();
+        this.calculaMulta();
+        usuario.setNumEmprestimos(usuario.getNumEmprestimos()-1);
+        livro.setExemplares(livro.getExemplares()+1);
     }
 
     public void calculaAtraso(){
@@ -69,12 +88,12 @@ public class Emprestimos {
         this.setDiasAtraso(dias);
     }
 
-    public double calculaMulta(){
+    public void calculaMulta(){
         if (atrasado){
-            System.out.println();
-
+            double valorMultaDiaria = 2d;
+            this.setValorMulta(valorMultaDiaria*this.getDiasAtraso());
+            usuario.setPendencias(valorMulta+usuario.getPendencias());
         }
-        return 0d;
     }
 
     public Usuarios getUsuario() {

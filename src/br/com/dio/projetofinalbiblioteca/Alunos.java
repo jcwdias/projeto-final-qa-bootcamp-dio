@@ -11,13 +11,12 @@ public class Alunos extends Usuarios{
 
 
     public void infoUsuarios (){
-        System.out.println(this.getNome());
-        System.out.println(this.getCurso());
-        System.out.println(this.getLimiteDias());
-        System.out.println(this.getNumEmprestimos());
-        System.out.println(this.getLimiteLivros());
-        System.out.println(this.getPendencias());
-        this.setEstado(true);
+        System.out.println("Nome: "+this.getNome());
+        System.out.println("Curso: "+this.getCurso());
+        System.out.println("Limite de dias: "+this.getLimiteDias());
+        System.out.println("Numero de empréstimos: "+this.getNumEmprestimos());
+        System.out.println("Limite de livros: "+this.getLimiteLivros());
+        System.out.println("Pendências: R$"+this.getPendencias());
         if(this.isEstado()){
             System.out.println("Usuário bloqueado, consulte a administração!");
         }
